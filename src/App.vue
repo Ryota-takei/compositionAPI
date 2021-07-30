@@ -1,12 +1,26 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <Child :title="foo" :count="bar" />
   </div>
 </template>
+
+<script lang="ts">
+import { defineComponent, ref } from "@vue/composition-api";
+import Child from "@/components/child.vue";
+
+export default defineComponent({
+  components: { Child },
+  setup: () => {
+    const foo = ref("abc");
+    const bar = ref(123);
+
+    return {
+      foo,
+      bar,
+    };
+  },
+});
+</script>
 
 <style>
 #app {
