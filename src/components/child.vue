@@ -2,12 +2,12 @@
   <div>
     title: {{ title }} <br />
     count: {{ count }} <br />
-    
+    {{ dobuleCount }}
   </div>
 </template>
 
 <script>
-import { defineComponent, ref } from "@vue/composition-api";
+import { computed, defineComponent, ref } from "@vue/composition-api";
 
 export default defineComponent({
   name: "Child",
@@ -21,9 +21,12 @@ export default defineComponent({
       default: 0,
     },
   },
-  setup() {
-    const foo = ref("abc");
-    return {foo};
+  setup(props) {
+    const dobuleCount = computed(() => props.count * 2);
+
+    return {
+      dobuleCount,
+    };
   },
 });
 </script>

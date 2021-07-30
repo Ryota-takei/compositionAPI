@@ -1,22 +1,27 @@
 <template>
   <div id="app">
     <Child :title="foo" :count="bar" />
+    {{ hoge }}
+    <Button @my-event="hoge = $event" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
 import Child from "@/components/child.vue";
+import Button from "@/components/Button.vue";
 
 export default defineComponent({
-  components: { Child },
+  components: { Child, Button },
   setup: () => {
     const foo = ref("abc");
     const bar = ref(123);
+    const hoge = ref("hoge")
 
     return {
       foo,
       bar,
+      hoge
     };
   },
 });
