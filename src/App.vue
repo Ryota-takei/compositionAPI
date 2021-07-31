@@ -1,14 +1,54 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <p class="title">
+          spaceX
+        </p>
+        <p class="subtitle">
+          selct what you like
+        </p>
+      </div>
+    </section>
+    <rocket-list :loading="loading" :rockets="rockets" />
   </div>
 </template>
+<script lang="ts">
+import { useQuery, useResult } from "@vue/apollo-composable";
+import { defineComponent, watch } from "@vue/composition-api";
+import { GET_ROCKETS } from "./qeuries/queries";
+import { Rockets } from "@/types/queryTypes";
+import RocketList from "@/components/rockets/RocketList.vue";
 
-<style>
+interface RocketsRes {
+  rockets: Rockets[];
+}
+
+export default defineComponent({
+  components: { RocketList },
+  setup() {
+    const { result, error, loading, onError } = useQuery<RocketsRes>(
+      GET_ROCKETS
+    );
+    const rockets = useResult(result);
+
+    onError((error) => {
+      console.log(error);
+      alert("エラーが発生しました");
+    });
+
+    return {
+      rockets,
+      error,
+      loading,
+    };
+  },
+});
+</script>
+
+<style scoped>
+
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
