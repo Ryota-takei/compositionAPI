@@ -10,45 +10,14 @@
         </p>
       </div>
     </section>
-    <rocket-list :loading="loading" :rockets="rockets" />
+    <router-view></router-view>
   </div>
 </template>
 <script lang="ts">
-import { useQuery, useResult } from "@vue/apollo-composable";
-import { defineComponent, watch } from "@vue/composition-api";
-import { GET_ROCKETS } from "./qeuries/queries";
-import { Rockets } from "@/types/queryTypes";
-import RocketList from "@/components/rockets/RocketList.vue";
 
-interface RocketsRes {
-  rockets: Rockets[];
-}
-
-export default defineComponent({
-  components: { RocketList },
-  setup() {
-    const { result, error, loading, onError } = useQuery<RocketsRes>(
-      GET_ROCKETS
-    );
-    const rockets = useResult(result);
-
-    onError((error) => {
-      console.log(error);
-      alert("エラーが発生しました");
-    });
-
-    return {
-      rockets,
-      error,
-      loading,
-    };
-  },
-});
 </script>
 
 <style scoped>
-
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
