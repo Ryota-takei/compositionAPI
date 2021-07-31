@@ -1,8 +1,11 @@
 <template>
   <div id="app">
-    <Child :title="foo" :count="bar" />
-    {{ hoge }}
+    <Child :title="foo" :count="count" v-model="count" />
     <Button @my-event="hoge = $event" />
+    {{ count }}
+    <div v-for="post in posts" :key="post.id">
+      <Card :post="post" />
+    </div>
   </div>
 </template>
 
@@ -10,18 +13,38 @@
 import { defineComponent, ref } from "@vue/composition-api";
 import Child from "@/components/child.vue";
 import Button from "@/components/Button.vue";
+import Card from "@/components/Card.vue";
 
+export type Post = {
+  userId: number;
+  id: number;
+  title: string;
+};
 export default defineComponent({
-  components: { Child, Button },
+  components: { Child, Button, Card },
+
   setup: () => {
     const foo = ref("abc");
-    const bar = ref(123);
-    const hoge = ref("hoge")
+    const count = ref(123);
+    const posts = ref<Post[]>([]);
+
+    const url = "https://jsonplaceholder.typicode.com/posts";
+    const getUsers = async () => {
+      try {
+        const res = await fetch(url);
+        const postLists: Post[] = await res.json();
+        console.log(postLists)
+        posts.value = postLists;
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUsers();
 
     return {
       foo,
-      bar,
-      hoge
+      count,
+      posts,
     };
   },
 });

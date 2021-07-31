@@ -2,11 +2,12 @@
   <div>
     title: {{ title }} <br />
     count: {{ count }} <br />
-    {{ dobuleCount }}
+    {{ dobuleCount }} <br />
+    <button @click="handleClick">押してー！</button>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { computed, defineComponent, ref } from "@vue/composition-api";
 
 export default defineComponent({
@@ -21,11 +22,15 @@ export default defineComponent({
       default: 0,
     },
   },
-  setup(props) {
+  setup(props, context) {
     const dobuleCount = computed(() => props.count * 2);
+    const handleClick = () => {
+      context.emit("input", props.count + 1);
+    };
 
     return {
       dobuleCount,
+      handleClick,
     };
   },
 });
