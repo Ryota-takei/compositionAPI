@@ -11,3 +11,18 @@ export type Rockets = {
     kg: number;
   };
 };
+
+export type Rocket = {
+  rocket: {
+    diameter: {
+      meters: number;
+    };
+    country: string;
+    company: string;
+    boosters: number;
+    id: string;
+    name: string;
+    type: string;
+    wikipedia: string;
+  };
+};

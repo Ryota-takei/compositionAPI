@@ -17,3 +17,20 @@ export const GET_ROCKETS = gql`
     }
   }
 `;
+
+export const GET_ROCKET = gql`
+  query GetRocket($id: ID!) {
+    rocket(id: $id) {
+      diameter {
+        meters
+      }
+      country
+      company
+      boosters
+      id
+      name
+      type
+      wikipedia
+    }
+  }
+`;

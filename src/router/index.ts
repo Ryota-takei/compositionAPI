@@ -15,6 +15,7 @@ const routes: Array<RouteConfig> = [
     path: "/rockets/:id",
     name: "Rockets",
     component: Rockets,
+    props: true
   },
 ];
 
