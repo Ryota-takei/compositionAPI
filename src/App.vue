@@ -3,7 +3,7 @@
     <section class="hero is-primary">
       <div class="hero-body">
         <p class="title">
-          spaceX
+          <router-link to="/">spaceX</router-link>
         </p>
         <p class="subtitle">
           selct what you like
@@ -18,7 +18,7 @@ import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   setup() {
-    return {}
+    return {};
   },
 });
 </script>
