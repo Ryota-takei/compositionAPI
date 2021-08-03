@@ -18,6 +18,24 @@ export const GET_ROCKETS = gql`
   }
 `;
 
+export const GET_ROCKETS_LOCAL = gql`
+  query GetRockets {
+    rockets @client {
+      id
+      name
+      diameter {
+        meters
+      }
+      height {
+        meters
+      }
+      mass {
+        kg
+      }
+    }
+  }
+`;
+
 export const GET_ROCKET = gql`
   query GetRocket($id: ID!) {
     rocket(id: $id) {

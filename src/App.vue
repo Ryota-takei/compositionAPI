@@ -8,6 +8,7 @@
         <p class="subtitle">
           selct what you like
         </p>
+        <router-link to="/local">Local!</router-link>
       </div>
     </section>
     <router-view></router-view>
