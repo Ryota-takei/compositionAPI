@@ -36,7 +36,7 @@ export default defineComponent({
       GET_ROCKETS,
       null,
       {
-        fetchPolicy: "cache-and-network",
+        fetchPolicy:"cache-first"
       }
     );
     const rockets = useResult(result);

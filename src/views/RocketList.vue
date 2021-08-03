@@ -33,7 +33,9 @@ interface RocketsRes {
 export default defineComponent({
   setup() {
     const { result, error, loading, onError } = useQuery<RocketsRes>(
-      GET_ROCKETS
+      GET_ROCKETS,null, {
+        fetchPolicy:"cache-and-network"
+      }
     );
     const rockets = useResult(result);
 
